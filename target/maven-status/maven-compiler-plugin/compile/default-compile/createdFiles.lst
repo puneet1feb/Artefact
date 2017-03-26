@@ -1,1 +1,7 @@
+com\artefact\config\CORSFilter.class
+com\artefact\config\HelloWorldConfiguration.class
+com\artefact\context\ArtefactSpringConfig.class
 com\artefact\controller\HomeController.class
+com\artefact\config\HelloWorldInitializer.class
+com\artefact\dto\CarouselDTO.class
+com\artefact\controller\ArtefactController.class
