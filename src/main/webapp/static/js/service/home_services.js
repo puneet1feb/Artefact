@@ -2,7 +2,7 @@
 
 myApp.factory('HomeServices', [ '$http', '$q', function($http, $q) {
 
-	var REST_URI = '/artefact/carousel';
+	var REST_URI = '/carousel';
 
 	var factory = {
 		getHomeInfo : getHomeInfo
