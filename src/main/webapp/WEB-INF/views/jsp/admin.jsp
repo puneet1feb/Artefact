@@ -36,7 +36,7 @@
 	<script src="static/js/bootstrap.js"></script>
 	<!-- <script src="static/js/service/admin_services.js"></script>
 	<script src="static/js/controller/admin_controller.js"></script> -->
-	<!-- <script src="static/js/service/addprod_services.js"></script> -->
+	<script src="static/js/service/addprod_services.js"></script>
 	<script src="static/js/controller/addprod_controller.js"></script>
 	<!-- <script src="static/js/service/removeprod_services.js"></script>
 	<script src="static/js/controller/removeprod_controller.js"></script>

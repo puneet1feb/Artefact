@@ -1,17 +1,37 @@
 package com.artefact.dto;
 
-import java.io.Serializable;
 
-public class ProductDTO implements Serializable {
+public class ProductDTO {
 	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 4549558961242196961L;
+	private int id;
 	private String image;
+	private int category;
+	private int priority;
 	private String text;
 	private String ebayLink;
 	private String amazonLink;
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public int getCategory() {
+		return category;
+	}
+	public void setCategory(int category) {
+		this.category = category;
+	}
+	public int getPriority() {
+		return priority;
+	}
+	public void setPriority(int priority) {
+		this.priority = priority;
+	}
 	public String getImage() {
 		return image;
 	}
@@ -43,5 +63,18 @@ public class ProductDTO implements Serializable {
 		this.ebayLink = ebayLink;
 		this.amazonLink = amazonLink;
 	}
+	public ProductDTO(int id, String image, int category, int priority, String text, String ebayLink,
+			String amazonLink) {
+		super();
+		this.id = id;
+		this.image = image;
+		this.category = category;
+		this.priority = priority;
+		this.text = text;
+		this.ebayLink = ebayLink;
+		this.amazonLink = amazonLink;
+	}
+	
+	
 	
 }

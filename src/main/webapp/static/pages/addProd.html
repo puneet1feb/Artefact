@@ -15,16 +15,8 @@
 	background-color: red;
 }
 
-.email.ng-valid {
-	background-color: lightgreen;
-}
-
-.email.ng-dirty.ng-invalid-required {
+.image.ng-dirty.ng-invalid-required {
 	background-color: red;
-}
-
-.email.ng-dirty.ng-invalid-email {
-	background-color: yellow;
 }
 </style>
 <div class="container-fluid">
@@ -80,7 +72,7 @@
 
 				<div class="row">
 					<div class="form-group col-md-12">
-						<label class="col-md-2 control-lable" for="address">Ebay
+						<label class="col-md-2 control-lable" for="ebayLink">Ebay
 							link</label>
 						<div class="col-md-7">
 							<input type="text" ng-model="ctrl.product.ebayLink" id="ebayLink"
@@ -92,7 +84,7 @@
 
 				<div class="row">
 					<div class="form-group col-md-12">
-						<label class="col-md-2 control-lable" for="address">Amazon
+						<label class="col-md-2 control-lable" for="amazonLink">Amazon
 							link</label>
 						<div class="col-md-7">
 							<input type="text" ng-model="ctrl.product.amazonLink"
@@ -104,24 +96,39 @@
 
 				<div class="row">
 					<div class="form-group col-md-12">
-						<label class="col-md-2 control-lable" for="email">Amazon </label>
+						<label class="col-md-2 control-lable" for="priority">Priority
+						</label>
 						<div class="col-md-7">
-							<input type="email" ng-model="ctrl.user.email" id="email"
-								class="email form-control input-sm"
-								placeholder="Enter your Email" required />
-							<div class="has-error" ng-show="myForm.$dirty">
-								<span ng-show="myForm.email.$error.required">This is a
-									required field</span> <span ng-show="myForm.email.$invalid">This
-									field is invalid </span>
-							</div>
+							<select ng-model="ctrl.product.priority" id="priority"
+								class="category form-control" required>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+							</select>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="form-group col-md-12">
+						<label class="col-md-2 control-lable" for="img">Image </label>
+						<div class="col-md-7">
+							<input accept=".jpg" type="file" name="img" file-model = "myFile">
 						</div>
 					</div>
 				</div>
 
 				<div class="row" align="center">
 					<div class="form-actions floatRight">
-						<input type="submit" value="{{!ctrl.user.id ? 'Add' : 'Update'}}"
-							class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
+						<input type="submit" class="btn btn-primary btn-sm"
+							ng-disabled="myForm.$invalid">
 						<button type="button" ng-click="ctrl.reset()"
 							class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Reset
 							Form</button>
