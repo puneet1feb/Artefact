@@ -123,7 +123,7 @@ public class ArtefactController {
 		
 		if(res > 0) {
 			//upload image to AWS
-			String link = artefactServices.addProductImage(file);
+			String link = artefactServices.addProductImage(name, file);
 			productDAO.addProductImage(res, link);
 			
 			
