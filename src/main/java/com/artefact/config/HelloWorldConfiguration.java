@@ -16,6 +16,8 @@ import org.springframework.web.servlet.view.JstlView;
 
 import com.artefact.dao.ProductDAO;
 import com.artefact.dao.ProductJDBCTemplate;
+import com.artefact.service.ArtefactServices;
+import com.artefact.service.ArtefactServicesImpl;
 
 @Configuration
 @EnableWebMvc
@@ -59,6 +61,11 @@ public class HelloWorldConfiguration extends WebMvcConfigurerAdapter{
     @Bean
     public ProductDAO getProductDAO() {
         return new ProductJDBCTemplate(getDataSource());
+    }
+    
+    @Bean
+    public ArtefactServices getArtefactServices() {
+        return new ArtefactServicesImpl();
     }
  
 }

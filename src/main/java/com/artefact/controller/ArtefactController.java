@@ -19,16 +19,20 @@ import org.springframework.web.multipart.MultipartFile;
 import com.artefact.dao.ProductDAO;
 import com.artefact.dto.CarouselDTO;
 import com.artefact.dto.ProductDTO;
+import com.artefact.dto.Status;
 import com.artefact.service.ArtefactServices;
 import com.artefact.service.ArtefactServicesImpl;
 
 @RestController
 public class ArtefactController {
 	
-	private ArtefactServices artefactServices;
-	
 	@Autowired
 	private ProductDAO productDAO;
+	
+	@Autowired
+	private ArtefactServices artefactServices;
+	
+	
 
 	@RequestMapping(value = "/carousel", method = RequestMethod.GET)
 	public ResponseEntity<CarouselDTO> getHomeCarousel() {
@@ -107,17 +111,27 @@ public class ArtefactController {
 	}
 	
 	
-	@RequestMapping(value = "/admin/product/image", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/product", method = RequestMethod.POST)
 	@ResponseBody
-	public Object addProduct(@RequestParam(value = "file") MultipartFile file, @RequestParam(value = "text") String text, 
+	public ResponseEntity<Status> addProduct(@RequestParam(value = "file") MultipartFile file, @RequestParam(value = "text") String text, @RequestParam(value = "name") String name,
 			@RequestParam(value = "category") int category, @RequestParam(value = "priority") int priority, 
 			@RequestParam(value = "ebayLink") String ebayLink, @RequestParam(value = "amazonLink") String amazonLink,
 			HttpServletRequest request) {
-		ProductDTO product = new ProductDTO(0, null, category, priority, text, ebayLink, amazonLink);
+		ProductDTO product = new ProductDTO(0, null, category, priority, text, name, ebayLink, amazonLink);
 		
 		int res = productDAO.addProduct(product);
-		System.out.println(res);
-		return null;
+		
+		if(res > 0) {
+			//upload image to AWS
+			String link = artefactServices.addProductImage(file);
+			productDAO.addProductImage(res, link);
+			
+			
+		}
+		Status status = new Status(res, "");
+		
+		
+		return new ResponseEntity<Status>(status, HttpStatus.OK);
 	}
 
 }

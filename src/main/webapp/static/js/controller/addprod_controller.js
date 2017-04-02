@@ -24,6 +24,7 @@ adminApp.controller('AddprodController', [ '$scope', 'AddprodServices',
 			self.product = {
 				id : null,
 				text : '',
+				name : '',
 				category : null,
 				ebayLink : '',
 				amazonLink : '',
@@ -42,13 +43,13 @@ adminApp.controller('AddprodController', [ '$scope', 'AddprodServices',
 				console.dir(file);
 
 				AddprodServices.uploadFileToUrl(file, product);
-			}
-			;
+			};
 
 			function reset() {
 				self.product = {
 					id : null,
 					text : '',
+					names : '',
 					category : '',
 					ebayLink : '',
 					amazonLink : '',

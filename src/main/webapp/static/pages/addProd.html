@@ -33,7 +33,7 @@
 						<label class="col-md-2 control-lable" for="uname">Product
 							Name</label>
 						<div class="col-md-7">
-							<input type="text" ng-model="ctrl.product.text" id="uname"
+							<input type="text" ng-model="ctrl.product.name" id="uname"
 								class="username form-control input-sm"
 								placeholder="Enter product name" required ng-minlength="3" />
 							<div class="has-error" ng-show="myForm.$dirty">
@@ -42,6 +42,18 @@
 									length required is 3</span> <span ng-show="myForm.uname.$invalid">This
 									field is invalid </span>
 							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="form-group col-md-12">
+						<label class="col-md-2 control-lable" for="pdesc">Product
+							Description</label>
+						<div class="col-md-7">
+							<input type="text" ng-model="ctrl.product.text" id="pdesc"
+								class="form-control input-sm"
+								placeholder="Enter product description"/>
 						</div>
 					</div>
 				</div>

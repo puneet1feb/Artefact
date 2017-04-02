@@ -10,6 +10,7 @@ public class ProductDTO {
 	private String image;
 	private int category;
 	private int priority;
+	private String name;
 	private String text;
 	private String ebayLink;
 	private String amazonLink;
@@ -63,16 +64,23 @@ public class ProductDTO {
 		this.ebayLink = ebayLink;
 		this.amazonLink = amazonLink;
 	}
-	public ProductDTO(int id, String image, int category, int priority, String text, String ebayLink,
+	public ProductDTO(int id, String image, int category, int priority, String text, String name,String ebayLink,
 			String amazonLink) {
 		super();
 		this.id = id;
 		this.image = image;
 		this.category = category;
 		this.priority = priority;
+		this.name = name;
 		this.text = text;
 		this.ebayLink = ebayLink;
 		this.amazonLink = amazonLink;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	
