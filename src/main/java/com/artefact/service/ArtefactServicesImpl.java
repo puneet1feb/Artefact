@@ -26,7 +26,7 @@ public class ArtefactServicesImpl implements ArtefactServices {
 		link.append("https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-970839045576/images/");
 		
 		String bucketName     = "elasticbeanstalk-us-west-2-970839045576/images";
-		String keyName        = name + "_" + multiPartfile.getOriginalFilename();
+		String keyName        = name.replace(' ', '_') + "_" + multiPartfile.getOriginalFilename().replace(' ', '_');
 		
 		AmazonS3 s3client = new AmazonS3Client(new ProfileCredentialsProvider("AWS - ARTEFACT"));
         try {

@@ -31,6 +31,10 @@ adminApp.controller('AddprodController', [ '$scope', 'AddprodServices',
 				priority : 10,
 				image : ''
 			};
+			
+			self.loader = false;
+			
+			self.showMsg = false;
 
 			self.submit = submit;
 			self.reset = reset;
@@ -41,8 +45,17 @@ adminApp.controller('AddprodController', [ '$scope', 'AddprodServices',
 
 				console.log('file is ');
 				console.dir(file);
+				
+				AddprodServices.uploadFileToUrl(file, product).then(function(data) {
+					self.loader = false;
+					self.showMsg = true;
+					reset();
+				}, function(errResponse) {
+					console.error('Error while getting carousel');
+					self.loader = false;
+				});
 
-				AddprodServices.uploadFileToUrl(file, product);
+				
 			};
 
 			function reset() {
@@ -59,6 +72,7 @@ adminApp.controller('AddprodController', [ '$scope', 'AddprodServices',
 			}
 
 			function submit() {
+				self.loader = true;
 				console.log('Saving New Prod : ', self.product);
 				uploadFile(self.product);
 

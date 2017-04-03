@@ -2,7 +2,7 @@
 
 adminApp.factory('AddprodServices', [ '$http', '$q', function($http, $q) {
 
-	var REST_URI = '/artefact/admin/product';
+	var REST_URI = '/admin/product';
 
 	var factory = {
 		addProd : addProd,

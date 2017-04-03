@@ -18,7 +18,6 @@
 	<nav class="navbar navbar-inverse navbar-btn navbar-static-top">
 		<div class="container-fluid">
 			<ul class="nav navbar-nav navbar-left">
-				<li><a href="#home"> Admin Home</a></li>
 				<li><a href="#addProd"> Add Product</a></li>
 				<li><a href="#removeProd"> Remove Product</a></li>
 				<li><a href="#updateProd"> Update Product</a></li>
