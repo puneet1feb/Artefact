@@ -1,5 +1,6 @@
 package com.artefact.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -15,6 +16,7 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 
 import com.artefact.dto.ProductDTO;
+import com.artefact.dto.ProductImageRowMapper;
 
 public class ProductJDBCTemplate implements ProductDAO {
 
@@ -39,7 +41,7 @@ public class ProductJDBCTemplate implements ProductDAO {
 		SimpleJdbcCall simpleJdbcCall = new SimpleJdbcCall(jdbcTemplateObject).withProcedureName("INSERT_PRODUCT");
 
 		Map<String, Object> inParamMap = new HashMap<String, Object>();
-		inParamMap.put("PNAME", product.getText());
+		inParamMap.put("PNAME", product.getName());
 		inParamMap.put("PDESC", product.getText());
 		inParamMap.put("P_EBAY_LINK", product.getEbayLink());
 		inParamMap.put("P_AMAZON_LINK", product.getAmazonLink());
@@ -79,8 +81,16 @@ public class ProductJDBCTemplate implements ProductDAO {
 
 	@Override
 	public List<ProductDTO> getProductsList(int category, int startIndex, int endIndex) {
-		// TODO Auto-generated method stub
-		return null;
+		String SQL = "SELECT PROD.PRODUCT_ID, PROD_PRIORITY, CATEGORY_ID, PRODUCT_NAME, PRODUCT_DESC, EBAY_LINK, IMAGE_S3_LINK, EBAY_LINK FROM PRODUCT PROD "
+				+"LEFT OUTER JOIN PRODUCT_IMAGES IMAGE ON PROD.PRODUCT_ID = IMAGE.PRODUCT_ID WHERE CATEGORY_ID = ? ORDER BY PROD_PRIORITY ASC LIMIT ?,?";
+		List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(SQL, new Object[]{category,startIndex,endIndex});
+		List<ProductDTO> products = new ArrayList<ProductDTO>();
+		for (Map row : rows) {
+			ProductDTO product = new ProductDTO((Integer)row.get("PRODUCT_ID"), (String)row.get("IMAGE_S3_LINK"), (Integer)row.get("CATEGORY_ID"), 
+					(Integer)row.get("PROD_PRIORITY"), (String)row.get("PRODUCT_DESC"), (String)row.get("PRODUCT_NAME"), (String)row.get("EBAY_LINK"), (String)row.get("EBAY_LINK"));
+			products.add(product);
+		}
+		return products;
 	}
 
 	@Override
@@ -89,6 +99,17 @@ public class ProductJDBCTemplate implements ProductDAO {
 		int return1 = jdbcTemplateObject.update(SQL, id, link);
 		return return1;
 		
+	}
+
+	@Override
+	public List<String> getCarouselImages() {
+		String SQL = "select IMAGE_ID, PRODUCT_ID, IMAGE_S3_LINK from PRODUCT_IMAGES ORDER BY IMAGE_ID DESC LIMIT 3";
+		List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(SQL);
+		List<String> images = new ArrayList<String>();
+		for (Map row : rows) {
+			images.add((String)row.get("IMAGE_S3_LINK"));
+		}
+		return images;
 	}
 
 }

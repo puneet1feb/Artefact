@@ -35,7 +35,7 @@ adminApp.factory('AddprodServices', [ '$http', '$q', function($http, $q) {
 		}).then(function(response) {
 			deferred.resolve(response.data);
 		}, function(errResponse) {
-			console.error('Error while fetching Home page Info');
+			console.error('Error while adding product');
 			deferred.reject(errResponse)
 		});
 		return deferred.promise;

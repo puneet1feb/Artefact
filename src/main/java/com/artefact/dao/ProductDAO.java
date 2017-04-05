@@ -12,6 +12,8 @@ public interface ProductDAO {
 	
 	public int updateProduct(ProductDTO product);
 	
+	public List<String> getCarouselImages();
+	
 	public boolean deleteProduct(ProductDTO product);
 	
 	public List<ProductDTO> getProductsList(int category, int startIndex, int endIndex);

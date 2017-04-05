@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.sql.rowset.RowSetWarning;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +23,6 @@ import com.artefact.dto.CarouselDTO;
 import com.artefact.dto.ProductDTO;
 import com.artefact.dto.Status;
 import com.artefact.service.ArtefactServices;
-import com.artefact.service.ArtefactServicesImpl;
 
 @RestController
 public class ArtefactController {
@@ -42,12 +43,22 @@ public class ArtefactController {
 		String[] imageText = new String[3];
 		carousel.setImage(image);
 		carousel.setImageText(imageText);
-		image[0] = "https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-970839045576/images/image1.jpg";
+		/*image[0] = "https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-970839045576/images/image1.jpg";
 		imageText[1] = "image 01";
 		image[1] = "https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-970839045576/images/image2.jpg";
 		imageText[1] = "image 02";
 		image[2] = "https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-970839045576/images/image3.jpg";
-		imageText[2] = "image 03";
+		imageText[2] = "image 03";*/
+		
+		List<String> images = productDAO.getCarouselImages();
+		
+		image[0] = images.get(0);
+		imageText[0] = StringUtils.substringAfter(images.get(0), "images/");
+		image[1] = images.get(1);
+		imageText[1] = StringUtils.substringAfter(images.get(1), "images/");
+		image[2] = images.get(2);
+		imageText[2] = StringUtils.substringAfter(images.get(2), "images/");
+		
 		return new ResponseEntity<CarouselDTO>(carousel, HttpStatus.OK);
 	}
 
@@ -56,57 +67,11 @@ public class ArtefactController {
 			@PathVariable String pageNumber) {
 
 		List<ProductDTO> products = new ArrayList<>();
-
-		ProductDTO product = new ProductDTO(
-				"https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-970839045576/images/image1.jpg",
-				"Product 1", null, "http://www.amazon.co.uk");
-
-		ProductDTO product1 = new ProductDTO(
-				"https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-970839045576/images/image1.jpg",
-				"Product 1", "http://www.ebay.co.uk", null);
-
-		ProductDTO product2 = new ProductDTO(
-				"https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-970839045576/images/image1.jpg",
-				"Product 1", "http://www.ebay.co.uk", null);
-
-		ProductDTO product3 = new ProductDTO(
-				"https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-970839045576/images/image1.jpg",
-				"Product 1", "http://www.ebay.co.uk", null);
-
-		ProductDTO product4 = new ProductDTO(
-				"https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-970839045576/images/image1.jpg",
-				"Product 1", null, "http://www.amazon.co.uk");
-
-		ProductDTO product5 = new ProductDTO(
-				"https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-970839045576/images/image1.jpg",
-				"Product 1", "http://www.ebay.co.uk", null);
-
-		ProductDTO product6 = new ProductDTO(
-				"https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-970839045576/images/image1.jpg",
-				"Product 1", "http://www.ebay.co.uk", null);
-
-		ProductDTO product7 = new ProductDTO(
-				"https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-970839045576/images/image1.jpg",
-				"Product 1", "http://www.ebay.co.uk", null);
-
-		ProductDTO product8 = new ProductDTO(
-				"https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-970839045576/images/image1.jpg",
-				"Product 1", null, "http://www.amazon.co.uk");
-
-		ProductDTO product9 = new ProductDTO(
-				"https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-970839045576/images/image1.jpg",
-				"Product 1", "http://www.ebay.co.uk", null);
-		products.add(product);
-		products.add(product1);
-		products.add(product2);
-		products.add(product3);
-		products.add(product4);
-		products.add(product5);
-		products.add(product6);
-		products.add(product7);
-		products.add(product8);
-		products.add(product9);
-
+		int pageNum = Integer.valueOf(pageNumber);
+		int startIdx = (12 * (pageNum - 1)) + 1;
+		int endIdx = (12 * (pageNum - 1)) +  +12;
+		
+		products = productDAO.getProductsList(Integer.valueOf(categoryId), startIdx, endIdx);
 		return new ResponseEntity<List<ProductDTO>>(products, HttpStatus.OK);
 	}
 	

@@ -15,5 +15,11 @@ public class HomeController {
      public String getAdminPage() {
          return "admin";
      }
+	 
+	 
+	 @RequestMapping(value = "/Access_Denied", method = RequestMethod.GET)
+	    public String accessDeniedPage() {
+	        return "accessDenied";
+	    }
 
 }

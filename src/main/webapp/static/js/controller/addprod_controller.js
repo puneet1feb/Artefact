@@ -49,7 +49,6 @@ adminApp.controller('AddprodController', [ '$scope', 'AddprodServices',
 				AddprodServices.uploadFileToUrl(file, product).then(function(data) {
 					self.loader = false;
 					self.showMsg = true;
-					reset();
 				}, function(errResponse) {
 					console.error('Error while getting carousel');
 					self.loader = false;
@@ -69,6 +68,8 @@ adminApp.controller('AddprodController', [ '$scope', 'AddprodServices',
 					priority : 10,
 					image : ''
 				};
+				elf.loader = false;
+				self.showMsg = true;
 			}
 
 			function submit() {

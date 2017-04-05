@@ -11,7 +11,7 @@ import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 
@@ -28,7 +28,7 @@ public class ArtefactServicesImpl implements ArtefactServices {
 		String bucketName     = "elasticbeanstalk-us-west-2-970839045576/images";
 		String keyName        = name.replace(' ', '_') + "_" + multiPartfile.getOriginalFilename().replace(' ', '_');
 		
-		AmazonS3 s3client = new AmazonS3Client(new ProfileCredentialsProvider("AWS - ARTEFACT"));
+		AmazonS3 s3client = AmazonS3ClientBuilder.standard().build();
         try {
             System.out.println("Uploading a new object to S3 from a file\n");
             

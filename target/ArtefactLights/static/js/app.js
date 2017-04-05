@@ -19,7 +19,7 @@ myApp.config(function($routeProvider, $locationProvider) {
 	}).when('/leddownlight', {
 		templateUrl : 'static/pages/leddownlight.html'
 	}).when('/commlighting', {
-		templateUrl : 'static/pages/commlighting.html'
+		templateUrl : 'static/pages/commlight.html'
 	}).otherwise({
 		redirectTo : '/'
 	});
