@@ -1,0 +1,41 @@
+<style>
+.username.ng-valid {
+	background-color: lightgreen;
+}
+
+.username.ng-dirty.ng-invalid-required {
+	background-color: red;
+}
+
+.username.ng-dirty.ng-invalid-minlength {
+	background-color: yellow;
+}
+
+.category.ng-dirty.ng-invalid-required {
+	background-color: red;
+}
+
+.image.ng-dirty.ng-invalid-required {
+	background-color: red;
+}
+</style>
+
+<div class="container-fluid">
+	<div class="panel panel-default"
+		ng-controller="AddprodController as ctrl">
+		<div class="panel-heading">
+			<span class="lead"> Remove Product</span>
+		</div>
+		<div class="cssload-loader" ng-show="ctrl.loader">
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+		<div class="alert alert-success" ng-show="ctrl.showMsg">
+			<strong>Success!</strong> Product {{ctrl.product.name}}
+			removed!!!!!!!!.
+		</div>
+	</div>
+</div>

@@ -31,6 +31,7 @@
 	<script src="static/js/angular.js"></script>
 	<script src="static/js/angular-route.js"></script>
 	<script src="static/js/adminApp.js"></script>
+	<script src="static/js/authInterceptor.js"></script>
 	<script src="static/js/jquery-3.2.0.min.js"></script>
 	<script src="static/js/bootstrap.js"></script>
 	<!-- <script src="static/js/service/admin_services.js"></script>

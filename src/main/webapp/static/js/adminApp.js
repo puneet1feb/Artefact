@@ -16,3 +16,8 @@ adminApp.config(function($routeProvider, $locationProvider) {
 		redirectTo : '/'
 	});
 });
+
+
+adminApp.config(['$httpProvider', function($httpProvider) {
+	  $httpProvider.interceptors.push('AuthInterceptor');
+	}]);
