@@ -2,6 +2,7 @@ C:\Users\Puneet\Documents\GitHub\Artefact\src\main\java\com\artefact\dao\Product
 C:\Users\Puneet\Documents\GitHub\Artefact\src\main\java\com\artefact\dto\CarouselDTO.java
 C:\Users\Puneet\Documents\GitHub\Artefact\src\main\java\com\artefact\config\HelloWorldConfiguration.java
 C:\Users\Puneet\Documents\GitHub\Artefact\src\main\java\com\artefact\config\CORSFilter.java
+C:\Users\Puneet\Documents\GitHub\Artefact\src\main\java\com\artefact\config\CustomBasicAuthenticationEntryPoint.java
 C:\Users\Puneet\Documents\GitHub\Artefact\src\main\java\com\artefact\dao\ProductJDBCTemplate.java
 C:\Users\Puneet\Documents\GitHub\Artefact\src\main\java\com\artefact\config\HelloWorldInitializer.java
 C:\Users\Puneet\Documents\GitHub\Artefact\src\main\java\com\artefact\config\SecurityConfiguration.java

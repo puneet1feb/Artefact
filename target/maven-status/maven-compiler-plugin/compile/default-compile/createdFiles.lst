@@ -3,6 +3,7 @@ com\artefact\config\HelloWorldConfiguration.class
 com\artefact\service\ArtefactServicesImpl.class
 com\artefact\context\ArtefactSpringConfig.class
 com\artefact\controller\HomeController.class
+com\artefact\config\CustomBasicAuthenticationEntryPoint.class
 com\artefact\config\HelloWorldInitializer.class
 com\artefact\service\ArtefactServices.class
 com\artefact\dto\Status.class
