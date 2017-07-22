@@ -74,9 +74,28 @@ public class ProductJDBCTemplate implements ProductDAO {
 	}
 
 	@Override
-	public boolean deleteProduct(ProductDTO product) {
-		// TODO Auto-generated method stub
-		return false;
+	public String deleteProduct(int productId) {
+		String imageLink="";
+		SimpleJdbcCall simpleJdbcCall = new SimpleJdbcCall(jdbcTemplateObject).withProcedureName("DELETE_PRODUCT");
+
+		Map<String, Object> inParamMap = new HashMap<String, Object>();
+		inParamMap.put("p_PRODUCT_ID", productId);
+		SqlParameterSource in = new MapSqlParameterSource(inParamMap);
+		
+		Map<String, Object> simpleJdbcCallResult = simpleJdbcCall.execute(in);
+		
+		Iterator<Entry<String, Object>> it = simpleJdbcCallResult.entrySet().iterator();
+	    while (it.hasNext()) {
+	        Map.Entry<String, Object> entry = (Map.Entry<String, Object>) it.next();
+	        String key = (String) entry.getKey();
+	        Object value = (Object) entry.getValue();
+	        
+	        if(StringUtils.equals(key, "IMAGE_LINK")) {
+	        	imageLink = (String)value;
+	        }
+	        
+	    }
+	    return imageLink;
 	}
 
 	@Override

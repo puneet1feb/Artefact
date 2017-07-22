@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -65,12 +66,19 @@ public class ArtefactController {
 	@RequestMapping(value = "/category/{categoryId}/{pageNumber}", method = RequestMethod.GET)
 	public ResponseEntity<List<ProductDTO>> getProductList(@PathVariable String categoryId,
 			@PathVariable String pageNumber) {
-
+		
 		List<ProductDTO> products = new ArrayList<>();
 		int pageNum = Integer.valueOf(pageNumber);
-		int startIdx = (12 * (pageNum - 1)) + 1;
-		int endIdx = (12 * (pageNum - 1)) +  +12;
+		int startIdx;
+		int endIdx;
 		
+		if(pageNum == 0) {
+			startIdx = 0;
+			endIdx = 9999999;
+		} else {
+			startIdx = (12 * (pageNum - 1)) + 1;
+			endIdx = (12 * (pageNum - 1)) +  +12;
+		}
 		products = productDAO.getProductsList(Integer.valueOf(categoryId), startIdx, endIdx);
 		return new ResponseEntity<List<ProductDTO>>(products, HttpStatus.OK);
 	}
@@ -97,6 +105,32 @@ public class ArtefactController {
 		
 		
 		return new ResponseEntity<Status>(status, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/admin/product", method = RequestMethod.PUT)
+	@ResponseBody
+	public ResponseEntity<Status> removeproduct(@RequestBody String[] products) {
+		
+		System.out.println(products);
+		
+		
+		StringBuffer statusMsg = new StringBuffer();
+		
+		
+		for(String productId : products) {
+			String imageLink = productDAO.deleteProduct(Integer.valueOf(productId));
+			boolean deleted = artefactServices.removeProductImage(imageLink);
+			if(deleted) {
+				statusMsg.append("Removed " + productId + "		");
+			} else {
+				statusMsg.append("Failed " + productId + "		");
+			}
+		}
+		
+		Status status = new Status(000, statusMsg.toString());
+		
+		return new ResponseEntity<Status>(status, HttpStatus.OK);
+		
 	}
 
 }

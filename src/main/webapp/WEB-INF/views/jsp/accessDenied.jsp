@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <html>
 <head>
-<title>Artefact lights - Access Denied</title>
+<title>Luminix LED - Access Denied</title>
 </head>
 
 <body>

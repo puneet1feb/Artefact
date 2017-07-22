@@ -10,8 +10,6 @@ adminApp.config(function($routeProvider, $locationProvider) {
 		templateUrl : 'static/pages/addProd.html'
 	}).when('/removeProd', {
 		templateUrl : 'static/pages/removeProd.html'
-	}).when('/updateProd', {
-		templateUrl : 'static/pages/updateProd.html'
 	}).otherwise({
 		redirectTo : '/'
 	});

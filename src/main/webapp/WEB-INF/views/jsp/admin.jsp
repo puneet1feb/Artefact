@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta http-equiv="Cache-Control" content="no-cache">
-<title>Artefact lights - Admin Page</title>
+<title>Luminix LED - Admin Page</title>
 <link rel="stylesheet" href="static/css/main.css">
 <link rel="stylesheet" href="static/css/bootstrap.css">
 </head>
@@ -11,7 +11,7 @@
 <body ng-app="adminApp" class="ng-cloak" id="main">
 	<nav class="navbar navbar-default">
 		<div class="navbar-header">
-			<a class="navbar-brand">Artefact Lights - Admin Home page</a>
+			<a class="navbar-brand">Luminix LED - Admin Home page</a>
 		</div>
 	</nav>
 
@@ -20,7 +20,6 @@
 			<ul class="nav navbar-nav navbar-left">
 				<li><a href="#addProd"> Add Product</a></li>
 				<li><a href="#removeProd"> Remove Product</a></li>
-				<li><a href="#updateProd"> Update Product</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -38,9 +37,9 @@
 	<script src="static/js/controller/admin_controller.js"></script> -->
 	<script src="static/js/service/addprod_services.js"></script>
 	<script src="static/js/controller/addprod_controller.js"></script>
-	<!-- <script src="static/js/service/removeprod_services.js"></script>
+	<script src="static/js/service/removeprod_services.js"></script>
 	<script src="static/js/controller/removeprod_controller.js"></script>
-	<script src="static/js/service/updateprod_services.js"></script>
+	<!-- <script src="static/js/service/updateprod_services.js"></script>
 	<script src="static/js/controller/updateprod_controller.js"></script> -->
 </body>
 </html>

@@ -3,7 +3,7 @@
 <html ng-app="myApp">
 <head>
 <meta http-equiv="Cache-Control" content="no-cache">
-<title>Artefact lights</title>
+<title>Luminix LED</title>
 <link rel="stylesheet" href="static/css/main.css">
 <link rel="stylesheet" href="static/css/bootstrap.css">
 </head>
@@ -11,11 +11,11 @@
 <body class="ng-cloak" id="main">
 	<nav class="navbar navbar-default">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="#home">Artefact Lights</a>
+			<a class="navbar-brand" href="#home">Luminix LED</a>
 		</div>
 		<div class="navbar-nav navbar-right">
 			<a class="navbar-brand" target="_blank"
-				href="http://stores.ebay.co.uk/artefactlights/">Visit our Ebay
+				href="http://stores.ebay.co.uk/luminixled/">Visit our Ebay
 				store</a>
 		</div>
 	</nav>

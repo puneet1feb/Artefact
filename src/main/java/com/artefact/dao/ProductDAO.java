@@ -14,7 +14,7 @@ public interface ProductDAO {
 	
 	public List<String> getCarouselImages();
 	
-	public boolean deleteProduct(ProductDTO product);
+	public String deleteProduct(int productId);
 	
 	public List<ProductDTO> getProductsList(int category, int startIndex, int endIndex);
 }

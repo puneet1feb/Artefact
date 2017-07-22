@@ -1,0 +1,163 @@
+<style>
+.username.ng-valid {
+	background-color: lightgreen;
+}
+
+.username.ng-dirty.ng-invalid-required {
+	background-color: red;
+}
+
+.username.ng-dirty.ng-invalid-minlength {
+	background-color: yellow;
+}
+
+.category.ng-dirty.ng-invalid-required {
+	background-color: red;
+}
+
+.image.ng-dirty.ng-invalid-required {
+	background-color: red;
+}
+</style>
+
+<div class="container-fluid">
+	<div class="panel panel-default"
+		ng-controller="AddprodController as ctrl">
+		<div class="panel-heading">
+			<span class="lead"> Add Product</span>
+		</div>
+		<div class="cssload-loader" ng-show="ctrl.loader">
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+		<div class="alert alert-success" ng-show="ctrl.showMsg">
+ 			 <strong>Success!</strong> Product {{ctrl.product.name}} added!!!!!!!!.
+		</div>
+		<div class="formcontainer" ng-hide="ctrl.loader">
+			<form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
+				<input type="hidden" ng-model="ctrl.product.id" />
+				<div class="row">
+					<div class="form-group col-md-12">
+						<label class="col-md-2 control-lable" for="uname">Product
+							Name</label>
+						<div class="col-md-7">
+							<input type="text" ng-model="ctrl.product.name" id="uname"
+								class="username form-control input-sm"
+								placeholder="Enter product name" required ng-minlength="3" />
+							<div class="has-error" ng-show="myForm.$dirty">
+								<span ng-show="myForm.uname.$error.required">This is a
+									required field</span> <span ng-show="myForm.uname.$error.minlength">Minimum
+									length required is 3</span> <span ng-show="myForm.uname.$invalid">This
+									field is invalid </span>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="form-group col-md-12">
+						<label class="col-md-2 control-lable" for="pdesc">Product
+							Description</label>
+						<div class="col-md-7">
+							<input type="text" ng-model="ctrl.product.text" id="pdesc"
+								class="form-control input-sm"
+								placeholder="Enter product description"/>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="form-group col-md-12">
+						<label class="col-md-2 control-lable" for="category">Category</label>
+						<div class="col-md-7">
+							<select ng-model="ctrl.product.category"
+								class="category form-control" required>
+								<option value="">---Please select---</option>
+								<option value="1">LED Spotlights</option>
+								<option value="2">LED Lightbulbs</option>
+								<option value="3">LED Strip Lights</option>
+								<option value="4">Indoor Light Fittings</option>
+								<option value="5">Outdoor Lighting</option>
+								<option value="6">LED Downlights</option>
+								<option value="7">Commercial Lighting</option>
+							</select>
+							<div class="has-error" ng-show="myForm.$dirty">
+								<span ng-show="myForm.category.$error.required">This is a
+									required field</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="row">
+					<div class="form-group col-md-12">
+						<label class="col-md-2 control-lable" for="ebayLink">Ebay
+							link</label>
+						<div class="col-md-7">
+							<input type="text" ng-model="ctrl.product.ebayLink" id="ebayLink"
+								class="form-control input-sm"
+								placeholder="Enter ebay product link" />
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="form-group col-md-12">
+						<label class="col-md-2 control-lable" for="amazonLink">Amazon
+							link</label>
+						<div class="col-md-7">
+							<input type="text" ng-model="ctrl.product.amazonLink"
+								id="amazonLink" class="form-control input-sm"
+								placeholder="Enter amazon product link" />
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="form-group col-md-12">
+						<label class="col-md-2 control-lable" for="priority">Priority
+						</label>
+						<div class="col-md-7">
+							<select ng-model="ctrl.product.priority" id="priority"
+								class="category form-control" required>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+							</select>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="form-group col-md-12">
+						<label class="col-md-2 control-lable" for="img">Image </label>
+						<div class="col-md-7">
+							<input accept=".jpg" type="file" name="img" file-model = "myFile">
+						</div>
+					</div>
+				</div>
+
+				<div class="row" align="center">
+					<div class="form-actions floatRight">
+						<input type="submit" class="btn btn-primary btn-sm"
+							ng-disabled="myForm.$invalid">
+						<button type="button" ng-click="ctrl.reset()"
+							class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Reset
+							Form</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
